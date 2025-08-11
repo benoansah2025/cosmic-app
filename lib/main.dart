@@ -3,7 +3,6 @@ import 'package:cosmic_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'routes/app_routes.dart';
 
-
 void main() {
   runApp(const CosmicApp());
 }
@@ -42,7 +41,7 @@ class _AppStartScreenState extends State<AppStartScreen> {
 
     if (userData == null) {
       // First open or cache cleared → go to Splash
-      Navigator.pushReplacementNamed(context, '/');
+      Navigator.pushReplacementNamed(context, '/splashscreen');
     } else {
       // User data found → check session validity
       final valid = await CachingService.isSessionValid();
@@ -57,7 +56,10 @@ class _AppStartScreenState extends State<AppStartScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
-    );
+      body: 
+      Center(
+        child: CircularProgressIndicator()
+        )
+        );
   }
 }

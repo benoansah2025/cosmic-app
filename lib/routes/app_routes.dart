@@ -6,10 +6,9 @@ import '../screens/home/home_screen.dart';
 import '../screens/auth/login_screen.dart';
 import '../screens/auth/signup_screen.dart';
 
-
 class AppRoutes {
   static final routes = {
-    '/': (context) => HomeScreen(),
+    '/home': (context) => HomeScreen(),
     '/favourites': (context) => FavouritesScreen(),
     '/profile': (context) => ProfileScreen(),
     '/login': (context) => LoginScreen(),

@@ -25,10 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(seconds: 2),
     );
 
-    _fadeAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-    );
+    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
 
     _controller.forward();
 
@@ -69,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                AppAssets.planet3, // Placeholder image for splash
+                AppAssets.splashImage, // Placeholder image for splash
                 width: 120,
                 height: 120,
               ),
@@ -85,15 +82,12 @@ class _SplashScreenState extends State<SplashScreen>
               const SizedBox(height: 10),
               const Text(
                 'Exploring the Universe',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: Colors.grey, fontSize: 16),
               ),
               const SizedBox(height: 40),
               const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              )
+              ),
             ],
           ),
         ),
