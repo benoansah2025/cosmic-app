@@ -1,3 +1,4 @@
+import 'package:cosmic_app/services/cache.dart';
 import 'package:flutter/material.dart';
 import '../../core/constants/strings.dart';
 
@@ -24,7 +25,16 @@ class SignupScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => Navigator.pushReplacementNamed(context, '/'),
+              onPressed: () async {
+                final user = {
+              'id': '123',
+             'name': 'Arthur Dent',
+              'email': 'arthur@galaxy.com'
+              };
+                await CachingService.saveUserData(user, const Duration(days: 7));
+
+    Navigator.pushReplacementNamed(context, '/home');
+              },
               child: const Text(AppStrings.signUpButton),
             ),
             TextButton(

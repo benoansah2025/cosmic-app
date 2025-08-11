@@ -1,3 +1,4 @@
+import 'package:cosmic_app/services/cache.dart';
 import 'package:flutter/material.dart';
 import '../../core/constants/strings.dart';
 import '../../core/constants/assets.dart';
@@ -31,10 +32,24 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    // Navigate after delay
-    Future.delayed(const Duration(seconds: 4), () {
+    // Check user session after short splash delay
+    Future.delayed(const Duration(seconds: 3), checkUserSession);
+  }
+
+  Future<void> checkUserSession() async {
+    final userData = await CachingService.getUserData();
+
+    if (userData == null) {
+      // First time or cache cleared → show Login
       Navigator.pushReplacementNamed(context, '/login');
-    });
+    } else {
+      final valid = await CachingService.isSessionValid();
+      if (valid) {
+        Navigator.pushReplacementNamed(context, '/home');
+      } else {
+        Navigator.pushReplacementNamed(context, '/login');
+      }
+    }
   }
 
   @override
@@ -53,9 +68,8 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // App logo or planet graphic
               Image.asset(
-                AppAssets.planet3, // Earth image as placeholder
+                AppAssets.planet3, // Placeholder image for splash
                 width: 120,
                 height: 120,
               ),
